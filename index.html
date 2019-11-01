@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+</head>
+<body onload="Main()">
+
+<noscript>
+Your browser does not support JavaScript!
+</noscript>
+
+<div class="btn-group">
+<button onclick="Main()" id="Main" >Main</button> 
+<button onclick="Shop()" id="Shop" >Shop</button> 
+</div>
+
+
+<p id= "DisCandies" ></p>
+<p id= "DisLolipops" ></p>
+<p id= "DisFarms" ></p>
+<p id= "DisFarmers" ></p>
+<div class="btn-group">
+<button onclick="BuyFarm()" id="BuyFarms" style="display:block;" >Buy Farm (25C)</button> 
+<button onclick="MakeCandies()" id="MakeCandiesButton" style="display:block;" >Make Candy</button>
+</div>
+
+<script>
+var Candies = 0
+var Thrown_Candies = 0
+var clickamount = 1
+var candypersecond = 0
+var Lolipops = 0
+var Farms = 0
+var farmcps = 0.5
+var farmcost = 25
+</script>
+
+
+
+
+<script> 
+//run function "Add Candies" every 1000 milliseconds ( every second )
+var Timer = setInterval(AddCandies ,1000);
+//Declare Function for adding Candies
+function AddCandies(){ 
+//Create Candies Display Text 
+var CandyDisText1 = "You have # Candies!"
+//Overwrite "#" with number of candies thrown on the ground
+var CandyDisText2 = CandyDisText1.replace("#",Candies+candypersecond)
+//Update Candies Display
+document.getElementById("DisCandies").innerHTML = CandyDisText2
+//Add 1 to total Candies
+Candies = Candies + candypersecond
+}
+function MakeCandies(){
+var CandyDisText3 = "You have # Candies!"
+var CandyDisText4 = CandyDisText3.replace("#",Candies+1)
+document.getElementById("DisCandies").innerHTML = CandyDisText4
+Candies = Candies + clickamount
+}
+function BuyFarm(){
+if (Candies > farmcost) {
+var Text1 = "You have # Farms!"
+var Text2 = Text1.replace("#",Farms+1)
+document.getElementById("DisFarms").innerHTML = Text2
+Farms = Farms + 1
+Candies = Candies - farmcost
+candypersecond = candypersecond + farmcps
+farmcost = (farmcost*1.10)
+var Text1 = "Buy Farm (#C)"
+var Text2 = Text1.replace("#",farmcost)
+document.getElementById("BuyFarms").innerHTML = Text2
+} }
+</script>
+
+<script>
+function toggle_visibility(id,toggle) {
+   var e = document.getElementById(id);
+      if( toggle == 0 ) 
+         e.style.display = 'none';
+      else
+         e.style.display = 'block';
+   }
+</script>
+
+<script>
+function Shop(){
+    toggle_visibility("MakeCandiesButton",0)
+    toggle_visibility("DisFarms",1)
+    toggle_visibility("BuyFarms",1)
+}
+
+function Main(){
+    toggle_visibility("MakeCandiesButton",1)
+    toggle_visibility("DisFarms",0)
+    toggle_visibility("BuyFarms",0)
+}
+</script>
+
+</body>
+</html>
