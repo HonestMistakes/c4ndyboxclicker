@@ -36,7 +36,6 @@ var Farms = 0
 var farmcps = 0.5
 var farmcost = 25
 var Farmers = 0
-var farmercps = 0.7
 var farmercost = 30
 </script>
 
@@ -73,7 +72,7 @@ Candies = Candies - farmcost
 candypersecond = candypersecond + farmcps
 farmcost = (farmcost*1.10)
 var Text3 = "Buy Farm (#C)"
-var Text4 = Text1.replace("#",farmcost)
+var Text4 = Text3.replace("#",farmcost)
 document.getElementById("BuyFarms").innerHTML = Text4
 } }
 function BuyFarmer(){
@@ -83,11 +82,11 @@ var Text4 = Text3.replace("#",Farmers+1)
 document.getElementById("DisFarmers").innerHTML = Text4
 Farmers = Farmers + 1
 Candies = Candies - farmercost
-candypersecond = candypersecond + farmercps
 farmercost = (farmercost*1.10)
+farmcps = (farmcps*1.10)
 var Text1 = "Buy Farmer (#C)"
 var Text2 = Text1.replace("#",farmercost)
-document.getElementById("BuyFarmers").innerHTML = Text4
+document.getElementById("BuyFarmers").innerHTML = Text2
 } }
 </script>
 
@@ -113,6 +112,8 @@ function Workers(){
     toggle_visibility("MakeCandiesButton",0)
     toggle_visibility("DisFarmers",1)
     toggle_visibility("BuyFarmers",1)
+    toggle_visibility("DisFarms",0)
+    toggle_visibility("BuyFarms",0)
 }
 function Main(){
     toggle_visibility("MakeCandiesButton",1)
