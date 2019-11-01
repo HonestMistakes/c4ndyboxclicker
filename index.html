@@ -12,6 +12,7 @@ Your browser does not support JavaScript!
 <div class="btn-group">
 <button onclick="Main()" id="Main" >Main</button> 
 <button onclick="Shop()" id="Shop" >Shop</button> 
+<button onclick="Workers()" id="Workers" >Workers</button> 
 </div>
 
 
@@ -20,7 +21,8 @@ Your browser does not support JavaScript!
 <p id= "DisFarms" ></p>
 <p id= "DisFarmers" ></p>
 <div class="btn-group">
-<button onclick="BuyFarm()" id="BuyFarms" style="display:block;" >Buy Farm (25C)</button> 
+<button onclick="BuyFarm()" id="BuyFarms" style="display:block;" >Buy Farm (25C)</button>
+<button onclick="BuyFarmer()" id="BuyFarmers" style="display:block;" >Buy Farmer (30C)</button> 
 <button onclick="MakeCandies()" id="MakeCandiesButton" style="display:block;" >Make Candy</button>
 </div>
 
@@ -33,6 +35,9 @@ var Lolipops = 0
 var Farms = 0
 var farmcps = 0.5
 var farmcost = 25
+var Farmers = 0
+var farmercps = 0.7
+var farmercost = 30
 </script>
 
 
@@ -67,9 +72,22 @@ Farms = Farms + 1
 Candies = Candies - farmcost
 candypersecond = candypersecond + farmcps
 farmcost = (farmcost*1.10)
-var Text1 = "Buy Farm (#C)"
-var Text2 = Text1.replace("#",farmcost)
-document.getElementById("BuyFarms").innerHTML = Text2
+var Text3 = "Buy Farm (#C)"
+var Text4 = Text1.replace("#",farmcost)
+document.getElementById("BuyFarms").innerHTML = Text4
+} }
+function BuyFarmer(){
+if (Candies > farmercost) {
+var Text3 = "You have # Farmers!"
+var Text4 = Text3.replace("#",Farmers+1)
+document.getElementById("DisFarmers").innerHTML = Text4
+Farmers = Farmers + 1
+Candies = Candies - farmercost
+candypersecond = candypersecond + farmercps
+farmercost = (farmercost*1.10)
+var Text1 = "Buy Farmer (#C)"
+var Text2 = Text1.replace("#",farmercost)
+document.getElementById("BuyFarmers").innerHTML = Text4
 } }
 </script>
 
@@ -88,12 +106,20 @@ function Shop(){
     toggle_visibility("MakeCandiesButton",0)
     toggle_visibility("DisFarms",1)
     toggle_visibility("BuyFarms",1)
+    toggle_visibility("DisFarmers",0)
+    toggle_visibility("BuyFarmers",0)
 }
-
+function Workers(){
+    toggle_visibility("MakeCandiesButton",0)
+    toggle_visibility("DisFarmers",1)
+    toggle_visibility("BuyFarmers",1)
+}
 function Main(){
     toggle_visibility("MakeCandiesButton",1)
     toggle_visibility("DisFarms",0)
     toggle_visibility("BuyFarms",0)
+    toggle_visibility("DisFarmers",0)
+    toggle_visibility("BuyFarmers",0)
 }
 </script>
 
